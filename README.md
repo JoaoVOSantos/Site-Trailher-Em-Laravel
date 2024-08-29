@@ -1,8 +1,8 @@
 ## Projeto Trailher
 A entrega Sobre o Banco de Dados:
-Arquivo SQl esta em: database/banco-site-trailher.sql
-O Script do Banco esta em: database\ScriptBanco.txt 
-A modelagem esta em: database\Modelagem Site Laravel 28-08 Pronto.brM3
+ - Arquivo SQl esta em: database/banco-site-trailher.sql
+ - O Script do Banco esta em: database\ScriptBanco.txt 
+ - A modelagem esta em: database\Modelagem Site Laravel 28-08 Pronto.brM3
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
