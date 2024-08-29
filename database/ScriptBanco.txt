@@ -1,0 +1,108 @@
+
+
+            Parte de Baixo da Modelagem
+----------------------------------------------------
+CREATE TABLE TipoProduto(
+    id_TipoProduto int AUTO_INCREMENT PRIMARY key,
+    Nome VARCHAR(255) NOT NULL
+);
+CREATE TABLE Ingredientes(
+    id_Ingrediente int AUTO_INCREMENT primary key,
+    Nome varchar(255) NOT NULL
+);
+
+CREATE TABLE IngredienteAtivo(
+    fk_Ingrediente int NOT NULL,
+    fk_Produto int NOT NULL,
+    Ativo boolean NOT NULL
+);
+
+
+CREATE TABLE Produto(
+    id_Produto int AUTO_INCREMENT primary key,
+    Nome varchar(255) NOT NULL,
+    Preco Double NOT NULL,
+    Descricao varchar(255) NOT NULL,
+    fk_TipoProduto int
+);
+--- Relacionamentos ---
+
+ALTER TABLE ingredienteativo ADD FOREIGN KEY (fk_Ingrediente) REFERENCES ingredientes(id_Ingrediente);
+ALTER TABLE ingredienteativo ADD FOREIGN KEY (fk_Produto) REFERENCES Produto(id_Produto);
+ALTER TABLE Produto ADD FOREIGN KEY (fk_TipoProduto) REFERENCES TipoProduto(id_TipoProduto);
+
+---------------------------------------------------------
+
+            Parte de Cima da Modelagem
+
+---------------------------------------------------------
+CREATE TABLE transacoes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_transacao VARCHAR(255) UNIQUE NOT NULL, --PARA A API TBM      
+    status ENUM('pending', 'approved', 'rejected', 'cancelled'), --Para a API, pesquisado
+    valor DECIMAL(10, 2) NOT NULL,
+    data_transacao DATETIME, 
+    descricao VARCHAR(255),
+    metodo_pagamento VARCHAR(50) NOT NULL,       
+    detalhes_pagamento VARCHAR(255),
+    fk_usuario INT NOT NULL                     
+);
+CREATE TABLE Usuario(
+    id_Usuario int AUTO_INCREMENT primary key,
+    Nome varchar(255) NOT NULL,
+    Senha VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    fk_Endereco int, --Tirar Campo, Conversar com o Escobar
+    UsuarioAdiministrador boolean NOT NULL
+);
+CREATE TABLE Endereco(
+    id_Endereco int AUTO_INCREMENT primary key,
+    Rua varchar(255),
+    Numero int,
+    Bairro varchar(255),
+    cep int,
+    complemento varchar(255),
+    fk_Usuario int
+);
+--- Relacionamentos ---
+
+ALTER TABLE Endereco ADD FOREIGN KEY (fk_Usuario) REFERENCES usuario(id_Usuario);
+ALTER TABLE transacoes ADD FOREIGN KEY (fk_usuario) REFERENCES usuario(id_Usuario);
+ALTER TABLE Usuario ADD FOREIGN KEY (fk_Endereco) REFERENCES Endereco(id_Endereco);
+
+-----------------------------------------------------------------
+
+            Parte do Meio da Modelagem
+
+-----------------------------------------------------------------
+CREATE TABLE Pedido(
+    id_Pedido int AUTO_INCREMENT primary key,
+    PrecoTotal decimal(10,2) NOT NULL,
+    Quantidade int,
+    fk_Usuario int,
+    fk_Produto int
+);
+CREATE TABLE ProdutoFavorito( --tabela ajuda
+    fk_Usuario int, 
+    fk_Produto int
+);
+//Relacionamento de Usuario com ProdutoFavorito e Produto com ProdutoFavorito.
+
+--- Relacionamentos ---
+
+ALTER TABLE Pedido ADD FOREIGN KEY (fk_Usuario) REFERENCES usuario(id_Usuario);
+ALTER TABLE Pedido ADD FOREIGN KEY (fk_Produto) REFERENCES Produto(id_Produto);
+
+ALTER TABLE ProdutoFavorito ADD FOREIGN KEY (fk_Usuario) REFERENCES usuario(id_Usuario);
+ALTER TABLE ProdutoFavorito ADD FOREIGN KEY (fk_Produto) REFERENCES Produto(id_Produto);
+
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
