@@ -4,7 +4,7 @@ A entrega Sobre o Banco de Dados:
  - O Script do Banco esta em: database\ScriptBanco.txt 
  - A modelagem esta em: database\Modelagem Site Laravel 28-08 Pronto.brM3
 
-<p align="center"><img src="/Imagens/ImagemBanco.png" width="600" alt="Logo Banco"></p>
+<p align="center"><img src="/Imagens/ImagemBanco.png" width="700" alt="Logo Banco"></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
