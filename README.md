@@ -7,4 +7,4 @@
 <p align="center"><img src="Desenvolvimento/Imagens/EmailArrumarBanco.png" width="700" alt="Email"></p>
 
 ### Como Ficou
-<p align="center"><img src="Desenvolvimento/Imagens/BancoArrumado.png" width="700" alt="Logo Banco"></p>
+<p align="center"><img src="Desenvolvimento/Imagens/BancoArrumado2.png" width="700" alt="Logo Banco"></p>

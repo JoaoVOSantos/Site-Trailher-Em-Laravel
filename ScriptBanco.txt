@@ -66,6 +66,7 @@ CREATE TABLE Pedido(
     Valor decimal(10,2) NOT NULL,
     Data_pago datetime,
     Quantidade int,
+    Pago boolean,
     fk_Usuario int
 );
 CREATE TABLE ProdutoFavorito( -- tabela ajuda
