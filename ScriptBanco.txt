@@ -1,7 +1,7 @@
 
 
-            Parte de Baixo da Modelagem
-----------------------------------------------------
+--           Parte de Baixo da Modelagem
+
 CREATE TABLE TipoProduto(
     id_TipoProduto int AUTO_INCREMENT PRIMARY key,
     Nome VARCHAR(255) NOT NULL
@@ -25,34 +25,22 @@ CREATE TABLE Produto(
     Descricao varchar(255) NOT NULL,
     fk_TipoProduto int
 );
---- Relacionamentos ---
+-- Relacionamentos 
 
 ALTER TABLE ingredienteativo ADD FOREIGN KEY (fk_Ingrediente) REFERENCES ingredientes(id_Ingrediente);
 ALTER TABLE ingredienteativo ADD FOREIGN KEY (fk_Produto) REFERENCES Produto(id_Produto);
 ALTER TABLE Produto ADD FOREIGN KEY (fk_TipoProduto) REFERENCES TipoProduto(id_TipoProduto);
 
----------------------------------------------------------
 
-            Parte de Cima da Modelagem
 
----------------------------------------------------------
-CREATE TABLE transacoes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    id_transacao VARCHAR(255) UNIQUE NOT NULL, --PARA A API TBM      
-    status ENUM('pending', 'approved', 'rejected', 'cancelled'), --Para a API, pesquisado
-    valor DECIMAL(10, 2) NOT NULL,
-    data_transacao DATETIME, 
-    descricao VARCHAR(255),
-    metodo_pagamento VARCHAR(50) NOT NULL,       
-    detalhes_pagamento VARCHAR(255),
-    fk_usuario INT NOT NULL                     
-);
+--           Parte de Cima da Modelagem
+
+
 CREATE TABLE Usuario(
     id_Usuario int AUTO_INCREMENT primary key,
     Nome varchar(255) NOT NULL,
     Senha VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
-    fk_Endereco int, --Tirar Campo, Conversar com o Escobar
     UsuarioAdiministrador boolean NOT NULL
 );
 CREATE TABLE Endereco(
@@ -64,40 +52,46 @@ CREATE TABLE Endereco(
     complemento varchar(255),
     fk_Usuario int
 );
---- Relacionamentos ---
+-- Relacionamentos 
 
-ALTER TABLE Endereco ADD FOREIGN KEY (fk_Usuario) REFERENCES usuario(id_Usuario);
-ALTER TABLE transacoes ADD FOREIGN KEY (fk_usuario) REFERENCES usuario(id_Usuario);
-ALTER TABLE Usuario ADD FOREIGN KEY (fk_Endereco) REFERENCES Endereco(id_Endereco);
+ALTER TABLE Endereco ADD FOREIGN KEY (fk_Usuario) REFERENCES Usuario(id_Usuario);
 
------------------------------------------------------------------
 
-            Parte do Meio da Modelagem
 
------------------------------------------------------------------
+--            Parte do Meio da Modelagem
+
+
 CREATE TABLE Pedido(
     id_Pedido int AUTO_INCREMENT primary key,
-    PrecoTotal decimal(10,2) NOT NULL,
+    Valor decimal(10,2) NOT NULL,
+    Data_pago datetime,
     Quantidade int,
-    fk_Usuario int,
-    fk_Produto int
+    fk_Usuario int
 );
-CREATE TABLE ProdutoFavorito( --tabela ajuda
+CREATE TABLE ProdutoFavorito( -- tabela ajuda
     fk_Usuario int, 
     fk_Produto int
 );
-//Relacionamento de Usuario com ProdutoFavorito e Produto com ProdutoFavorito.
+-- Relacionamento de Usuario com ProdutoFavorito e Produto com ProdutoFavorito.
 
---- Relacionamentos ---
+-- Relacionamentos
 
 ALTER TABLE Pedido ADD FOREIGN KEY (fk_Usuario) REFERENCES usuario(id_Usuario);
-ALTER TABLE Pedido ADD FOREIGN KEY (fk_Produto) REFERENCES Produto(id_Produto);
-
 ALTER TABLE ProdutoFavorito ADD FOREIGN KEY (fk_Usuario) REFERENCES usuario(id_Usuario);
 ALTER TABLE ProdutoFavorito ADD FOREIGN KEY (fk_Produto) REFERENCES Produto(id_Produto);
 
------------------------------------------------------------------
 
+
+--            Alteraçoes que o Escobar pediu 
+
+
+CREATE TABLE Produto_Pedido( -- tabela ajuda
+    fk_Produto int, 
+    fk_Pedido int
+);
+
+ALTER TABLE Produto_Pedido ADD FOREIGN KEY (fk_Produto) REFERENCES Produto(id_Produto);
+ALTER TABLE Produto_Pedido ADD FOREIGN KEY (fk_Pedido) REFERENCES Pedido(id_Pedido);
 
 
 

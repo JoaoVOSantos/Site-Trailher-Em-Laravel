@@ -1,7 +1,10 @@
 ## Projeto Trailher
-A entrega Sobre o Banco de Dados:
- - Arquivo SQl esta em: banco-site-trailher.sql
- - O Script do Banco esta em: ScriptBanco.txt 
- - A modelagem esta em: Modelagem Site Laravel 28-08 Pronto.brM3
 
-<p align="center"><img src="/Imagens/ImagemBanco.png" width="700" alt="Logo Banco"></p>
+<p align="center"><img src="Desenvolvimento/Imagens/ImagemBanco.png" width="700" alt="Logo Banco"></p>
+
+## Entregavel Banco de Dados
+### Oq foi pedido
+<p align="center"><img src="Desenvolvimento/Imagens/EmailArrumarBanco.png" width="700" alt="Email"></p>
+
+### Como Ficou
+<p align="center"><img src="Desenvolvimento/Imagens/BancoArrumado.png" width="700" alt="Logo Banco"></p>
