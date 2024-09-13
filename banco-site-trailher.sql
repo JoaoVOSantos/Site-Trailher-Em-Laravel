@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/08/2024 às 21:44
+-- Tempo de geração: 13/09/2024 às 19:36
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -113,24 +113,6 @@ CREATE TABLE `tipoproduto` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `transacoes`
---
-
-CREATE TABLE `transacoes` (
-  `id` int(11) NOT NULL,
-  `id_transacao` varchar(255) NOT NULL,
-  `status` enum('pending','approved','rejected','cancelled') DEFAULT NULL,
-  `valor` decimal(10,2) NOT NULL,
-  `data_transacao` datetime DEFAULT NULL,
-  `descricao` varchar(255) DEFAULT NULL,
-  `metodo_pagamento` varchar(50) NOT NULL,
-  `detalhes_pagamento` varchar(255) DEFAULT NULL,
-  `fk_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estrutura para tabela `usuario`
 --
 
@@ -196,14 +178,6 @@ ALTER TABLE `tipoproduto`
   ADD PRIMARY KEY (`id_TipoProduto`);
 
 --
--- Índices de tabela `transacoes`
---
-ALTER TABLE `transacoes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_transacao` (`id_transacao`),
-  ADD KEY `fk_usuario` (`fk_usuario`);
-
---
 -- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
@@ -243,12 +217,6 @@ ALTER TABLE `produto`
 --
 ALTER TABLE `tipoproduto`
   MODIFY `id_TipoProduto` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `transacoes`
---
-ALTER TABLE `transacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
@@ -292,12 +260,6 @@ ALTER TABLE `produto`
 ALTER TABLE `produtofavorito`
   ADD CONSTRAINT `produtofavorito_ibfk_1` FOREIGN KEY (`fk_Usuario`) REFERENCES `usuario` (`id_Usuario`),
   ADD CONSTRAINT `produtofavorito_ibfk_2` FOREIGN KEY (`fk_Produto`) REFERENCES `produto` (`id_Produto`);
-
---
--- Restrições para tabelas `transacoes`
---
-ALTER TABLE `transacoes`
-  ADD CONSTRAINT `transacoes_ibfk_1` FOREIGN KEY (`fk_usuario`) REFERENCES `usuario` (`id_Usuario`);
 
 --
 -- Restrições para tabelas `usuario`
