@@ -1,7 +1,7 @@
 # Exercicio 13/09/24 
 - Esta em uma Branch que chama Exercicio-13-09
 
-<p align="center"><img src="Imagens/Exercicio.png" width="700" alt=""></p>
+<p align="center"><img src="Imagens/Exercicio.png" width="700" alt="Imagem"></p>
 ## Projeto Trailher
 
 <p align="center"><img src="Imagens/ImagemBanco.png" width="700" alt="Logo Banco"></p>
