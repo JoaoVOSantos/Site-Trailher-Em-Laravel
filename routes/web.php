@@ -10,8 +10,9 @@ Route::get("/", function(){
 
 // Rota do Conteudo categoria                     Puxando Classe   Função index
 Route::get("/categoria", [categoriaController::class, "index"]);
+Route::post("/categoria", [categoriaController::class,"SalvarNovaCategoria"]);
+Route::post("categoria/udp",[categoriaController::class,"SalvarAlteracao"])->name('cat_alt_salva');
 
-// Rota do Conteudo produto
-Route::get("/produto", function(){
-    return view("produto.index");
-});
+Route::get('/categoria/upd/{id}', [categoriaController::class, "BuscaAlterar"])->name('cat_alterar');
+Route::get('/categoria/exc/{id}', [categoriaController::class, "ExcluirCategoria"])->name('cat_excluir');
+
