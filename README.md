@@ -9,6 +9,7 @@
     - Banco de Dados
         - config/database.php
          -  'default' => env('DB_CONNECTION', 'mysql'),
+         - .env
          - DB_CONNECTION=mysql
          - DB_DATABASE=CRUD
     - Template
@@ -29,13 +30,12 @@
     - Model
         - php artisan make:model Categoria
         - app/Models/Categoria.php
-    - Route
-        Rota -> Controller -> View
-
     - Controller
         -Inserir, Alterar, Update, Delete
         - php artisan make:controller categoriaController
         - app/http/controllers/categoriasController.php
+    - Route
+        - Rota -> Controller -> View
     - View
 
 
