@@ -44,14 +44,14 @@
                                 <td>{{ $linha->categoria->cat_nome }}</td>
                                 <td>
 
-                                    <a href='{{ route('cat_alterar', ['id' => $linha->id]) }}'
+                                    <a href='{{ route('prod_alterar', ['id' => $linha->id]) }}'
                                         class="btn btn-primary btn-sm">
                                         <i class="fa fa-pencil"> </i>
                                     </a>
 
                                     |
 
-                                    <a href="{{ route('cat_excluir', ['id' => $linha->id]) }}"
+                                    <a href="{{ route('prod_excluir', ['id' => $linha->id]) }}"
                                         class="btn btn-danger btn-sm">
                                         <i class="fa fa-trash"> </i>
                                     </a>
