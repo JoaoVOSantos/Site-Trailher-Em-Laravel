@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produto', function (Blueprint $table) {
+        Schema::create('endereco', function (Blueprint $table) {
             $table->id();
-            // 
-            $table->foreignId('cat_id')->constrained('categoria')->onDelete('cascade');
-            $table->string('prod_nome'); //String 255 caracteres
-            $table->integer('prod_quantidade');
-            $table->text('prod_descricao')->nullable(); //Text 250000 caracteres
+            $table->string('end_rua');
+            $table->integer('end_numero');
+            $table->string('end_bairro');
+            $table->integer('end_cep');
+            $table->text('end_complemento');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produto');
+        Schema::dropIfExists('endereco');
     }
 };

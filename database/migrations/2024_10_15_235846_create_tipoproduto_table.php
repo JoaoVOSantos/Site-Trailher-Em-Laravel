@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categoria', function (Blueprint $table) {
-            $table->id(); // Inteiro - Chave Primaria - Auto Increment
-            $table->string("cat_nome");
-            $table->string("cat_descricao")->nullable(); // nullable = pode ser vazio
-            $table->boolean("cat_ativo")->default(1); // Exclusao logica
+        Schema::create('tipoproduto', function (Blueprint $table) {
+            $table->id();
+            $table->string('tip_nome');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categoria');
+        Schema::dropIfExists('tipoproduto');
     }
 };

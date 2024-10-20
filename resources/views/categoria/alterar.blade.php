@@ -14,7 +14,7 @@
             <div class="card-body">
                 <div class="row">
 
-                    <form action="{{ route('cat_alt_salva') }}" method="POST">
+                    <form action="{{ route(name: 'cat_alt_salva') }}" method="POST">
                         @csrf <!-- Sempre colocar quando usar forms-->
                         <input type="hidden" name="id" value="{{ $categoria->id }}" />
                         <div class="form-floating mb-3">
