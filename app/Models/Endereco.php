@@ -13,6 +13,6 @@ class Endereco extends Model
     protected $fillable = ['end_rua','end_numero','end_bairro','end_cep','end_complemento'];
 
     public function usuario(){
-        return $this->belongsToMany(Usuario::class,'usu_end','end_id','end_id');
+        return $this->belongsToMany(Usuario::class, 'endereco_usuario');
     }
 }
