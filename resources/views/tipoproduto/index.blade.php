@@ -68,6 +68,7 @@
                             <input type="text" class="form-control" name="tip_nome">
                             <label for="floatingInput">Nome do Tipo do Produto</label>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

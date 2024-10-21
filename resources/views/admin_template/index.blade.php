@@ -70,8 +70,8 @@
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                         <a class="nav-link" href="/tipoproduto">Tipo Produto</a>
-                                        <a class="nav-link" href="/endereco">Endereço</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>   
+                                        <a class="nav-link" href="/endereco">Endereço</a> 
+                                        <a class="nav-link" href="/usuario">Usuario</a> 
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Addons</div>
