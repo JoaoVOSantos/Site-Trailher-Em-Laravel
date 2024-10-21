@@ -4,6 +4,7 @@ use App\Http\Controllers\categoriaController;
 use App\Http\Controllers\enderecoController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\tipoprodutoController;
+use App\Http\Controllers\usuarioController;
 use Illuminate\Support\Facades\Route;
 // Certo rota sempre chamar o controller
 // Rota Layout Index
@@ -11,6 +12,9 @@ Route::get("/", function(){
     return view("admin_template.index");
 });
 
+Route::get('/usuario',[usuarioController::class,'index'])->name("usuario_index");
+Route::get("/usuario/upd/{id}", [usuarioController::class, "BuscaAlterarUSU"])->name('usu_alterar');
+Route::get("/usuario/exc/{id}", [usuarioController::class, "ExcluirUSU"])->name('usu_excluir');
 
 
 Route::get('/endereco',[enderecoController::class,'index'])->name("endereco_index");
