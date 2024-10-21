@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_endereco', function (Blueprint $table) {
+        Schema::create('ingrediente', function (Blueprint $table) {
             $table->id();
-            $table->string('end_rua');
-            $table->integer('end_numero');
-            $table->string('end_bairro');
-            $table->integer('end_cep');
-            $table->text('end_complemento');
-
+            $table->string('ing_nome');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_endereco');
+        Schema::dropIfExists('ingrediente');
     }
 };

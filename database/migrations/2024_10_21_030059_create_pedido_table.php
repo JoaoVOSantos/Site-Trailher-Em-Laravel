@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('endereco', function (Blueprint $table) {
+        Schema::create('pedido', function (Blueprint $table) {
             $table->id();
-            $table->string('end_rua');
-            $table->integer('end_numero');
-            $table->string('end_bairro');
-            $table->integer('end_cep');
-            $table->text('end_complemento')->nullable();
+            $table->foreignId('usuario_id')->constrained('usuario')->onDelete('cascade');
+            $table->decimal('ped_valor');
+            $table->dateTime('ped_data_pago');
+            $table->integer('ped_quantidade');
+            $table->boolean('ped_status'); 
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('endereco');
+        Schema::dropIfExists('pedido');
     }
 };
