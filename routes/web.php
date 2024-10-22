@@ -12,9 +12,13 @@ Route::get("/", function(){
     return view("admin_template.index");
 });
 
+
+
+
 Route::post('/usuario',[usuarioController::class,'SalvarNovoUsuario']);
 Route::get('/usuario',[usuarioController::class,'index'])->name("usuario_index");
 Route::get("/usuario/upd/{id}", [usuarioController::class, "BuscaAlterarUSU"])->name('usu_alterar');
+Route::post("/usuario/upd",[usuarioController::class,"SalvarAlteracaoUSU"])->name('usu_alt_salva');
 Route::get("/usuario/exc/{id}", [usuarioController::class, "ExcluirUSU"])->name('usu_excluir');
 
 

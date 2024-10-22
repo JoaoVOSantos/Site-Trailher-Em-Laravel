@@ -95,21 +95,19 @@
                     </div>
                     <label for="floatingInput">Admin?</label>
                     <div class="form-floating mb-3">
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="usu_admin" value="1" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Sim
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="usu_admin" value="0" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Não
-                            </label>
-                        </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="usu_admin" value="1" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Sim
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="usu_admin" value="0" id="flexRadioDefault1" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Não
+                                </label>
+                            </div>
                     </div>
-
                 <label for="floatingInput">Selecione um Endereço</label>
                 @foreach ($enderecos as $item)
                 <div class="form-check">
