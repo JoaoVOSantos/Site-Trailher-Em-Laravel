@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\categoriaController;
 use App\Http\Controllers\enderecoController;
-use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +9,6 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", function(){
     return view("admin_template.index");
 });
-
 
 
 
