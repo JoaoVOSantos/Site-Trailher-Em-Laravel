@@ -12,4 +12,10 @@ class Ingrediente extends Model
     protected $table = "ingrediente";
     protected $fillable = ['tip_nome'];
 
+    public function produto()
+    {
+        return $this->belongsToMany(Produto::class, 'ingredienteativo')
+                    ->withPivot('ativo') ; // Inclui o campo adicional 'ativo' da tabela pivot
+    }
+
 }

@@ -12,8 +12,12 @@ class Usuario extends Model
     protected $table = "usuario";
     protected $fillable = ['usu_nome', 'usu_senha', 'usu_email', 'usu_admin'];
 
+
     public function endereco(){
         return $this->belongsToMany(Endereco::class,'endereco_usuario');
+    }
+    public function pedido(){
+        return $this->hasMany(Pedido::class, 'usuario_id');
     }
 
 }

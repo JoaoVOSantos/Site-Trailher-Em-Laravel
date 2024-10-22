@@ -11,10 +11,18 @@ class Produto extends Model
     protected $table = "produto";
     protected $fillable = ['tip_id','pro_nome','pro_preco','pro_descricao'];
 
-    public function tipo(){
+    public function tipoproduto(){
         return $this->belongsTo(TipoProduto::class, 'tip_id');
     }
-    public function ingrediente(){
-        return $this->belongsToMany(Ingrediente::class, 'ingredienteativo');
+
+    public function pedido(){
+        return $this->belongsToMany(Pedido::class, 'produdopedido');
     }
+
+    public function ingrediente()
+    {
+        return $this->belongsToMany(Ingrediente::class, 'ingredienteativo')
+                    ->withPivot('ativo');  // Inclui o campo adicional 'ativo' da tabela pivot
+    }
+
 }

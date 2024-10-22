@@ -9,7 +9,7 @@ class TipoProduto extends Model
 {
     use HasFactory;
     protected $table = "tipoproduto";
-    protected $fillable = ['ing_nome'];
+    protected $fillable = ['tip_nome'];
 
     public function produto(){
         return $this->hasMany(Produto::class, 'tip_id');
