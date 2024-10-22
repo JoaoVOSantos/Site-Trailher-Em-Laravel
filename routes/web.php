@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\enderecoController;
+use App\Http\Controllers\produtoController;
 use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,8 @@ Route::post("/tipoproduto", [tipoprodutoController::class, "SalvarNovoTipoProdut
 Route::get("/tipoproduto/upd/{id}", [tipoprodutoController::class, "BuscaAlterarTP"])->name('tip_alterar');
 Route::post("/tipoproduto/upd",[tipoprodutoController::class,"SalvarAlteracaoTP"])->name('tip_alt_salva');
 Route::get("/tipoproduto/exc/{id}", [tipoprodutoController::class, "ExcluirTP"])->name('tip_excluir');
+
+Route::get("/produto", [produtoController::class, "index"])->name('produto_index');
+Route::get("/produto/upd/{id}", [produtoController::class, "BuscaAlterarPRO"])->name('pro_alterar');
+Route::get("/produto/exc/{id}", [produtoController::class, "ExcluirPRO"])->name('pro_excluir');
+Route::post("/produto", [produtoController::class, "SalvarNovoProduto"]);
