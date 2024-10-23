@@ -17,7 +17,7 @@ class produtoController extends Controller
         $ingrediente_todos = Ingrediente::all();
         $tipoproduto_todos = TipoProduto::all(); //para o modal
         $tipoproduto = TipoProduto::with('produto')->get(); //para a tabela
-        
+        // tetse
 
         return view('produto.index',compact('produto', 'tipoproduto','ingrediente','tipoproduto_todos','ingrediente_todos'));
     }
