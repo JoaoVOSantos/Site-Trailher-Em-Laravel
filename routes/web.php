@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\enderecoController;
+use App\Http\Controllers\ingredienteController;
 use App\Http\Controllers\produtoController;
 use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
@@ -33,6 +34,12 @@ Route::post("/tipoproduto/upd",[tipoprodutoController::class,"SalvarAlteracaoTP"
 Route::get("/tipoproduto/exc/{id}", [tipoprodutoController::class, "ExcluirTP"])->name('tip_excluir');
 
 Route::get("/produto", [produtoController::class, "index"])->name('produto_index');
-Route::get("/produto/upd/{id}", [produtoController::class, "BuscaAlterarPRO"])->name('pro_alterar');
-Route::get("/produto/exc/{id}", [produtoController::class, "ExcluirPRO"])->name('pro_excluir');
-Route::post("/produto", [produtoController::class, "SalvarNovoProduto"]);
+Route::get("/produto/upd/{id}", [produtoController::class, "BuscaAlterarPRO"])->name('pro_alterar'); // falta fazer
+Route::get("/produto/exc/{id}", [produtoController::class, "ExcluirPRO"])->name('pro_excluir'); 
+Route::post("/produto", [produtoController::class, "SalvarNovoProduto"]); // falta fazer
+
+Route::get("/ingrediente", [ingredienteController::class, "index"])->name('ingrediente_index');
+Route::post("/ingrediente", [ingredienteController::class, "SalvarNovoING"]);
+Route::get("/ingrediente/upd/{id}", [ingredienteController::class, "BuscaAlterarING"])->name('ing_alterar');
+Route::get("/ingrediente/exc/{id}", [ingredienteController::class, "ExcluirING"])->name('ing_excluir'); 
+Route::post("/ingrediente/upd",[ingredienteController::class,"SalvarAlteracaoING"])->name('ing_alt_salva');
