@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\enderecoController;
 use App\Http\Controllers\ingredienteController;
+use App\Http\Controllers\pedidoController;
 use App\Http\Controllers\produtoController;
 use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
@@ -12,14 +13,11 @@ Route::get("/", function(){
     return view("admin_template.index");
 });
 
-
-
 Route::post('/usuario',[usuarioController::class,'SalvarNovoUsuario']);
 Route::get('/usuario',[usuarioController::class,'index'])->name("usuario_index");
 Route::get("/usuario/upd/{id}", [usuarioController::class, "BuscaAlterarUSU"])->name('usu_alterar');
 Route::post("/usuario/upd",[usuarioController::class,"SalvarAlteracaoUSU"])->name('usu_alt_salva');
 Route::get("/usuario/exc/{id}", [usuarioController::class, "ExcluirUSU"])->name('usu_excluir');
-
 
 Route::get('/endereco',[enderecoController::class,'index'])->name("endereco_index");
 Route::post('/endereco',[enderecoController::class,'SalvarNovoEndereco']);
@@ -44,3 +42,9 @@ Route::post("/ingrediente", [ingredienteController::class, "SalvarNovoING"]);
 Route::get("/ingrediente/upd/{id}", [ingredienteController::class, "BuscaAlterarING"])->name('ing_alterar');
 Route::get("/ingrediente/exc/{id}", [ingredienteController::class, "ExcluirING"])->name('ing_excluir'); 
 Route::post("/ingrediente/upd",[ingredienteController::class,"SalvarAlteracaoING"])->name('ing_alt_salva');
+
+Route::get("/pedido", [pedidoController::class, "index"])->name('pedido_index');
+Route::post("/pedido", [pedidoController::class, "SalvarNovoPED"]);
+Route::get("/pedido/upd/{id}", [pedidoController::class, "BuscaAlterarPED"])->name('ped_alterar');
+Route::get("/pedido/exc/{id}", [pedidoController::class, "ExcluirPED"])->name('ped_excluir'); 
+Route::post("/pedido/upd",[pedidoController::class,"SalvarAlteracaoPED"])->name('ped_alt_salva');
