@@ -16,8 +16,13 @@ class Ingredienteativo extends Model
         'ativo',
     ];
     
-    public function produto(){
-        return $this->belongsToMany(Produto::class, 'ingredienteativo');
+    public function produto()
+    {
+        return $this->belongsTo(Produto::class);
+    }
+    public function ingrediente()
+    {
+        return $this->belongsTo(Ingrediente::class);
     }
     
 }

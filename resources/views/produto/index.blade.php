@@ -91,7 +91,7 @@
 
               
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="pro_descricao">
+                        <input type="text" class="form-control" name="pro_descricao" max="255">
                         <label for="floatingInput">Descrição</label>
                     </div>
                

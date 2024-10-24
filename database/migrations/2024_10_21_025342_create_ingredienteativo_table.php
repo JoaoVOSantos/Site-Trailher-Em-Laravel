@@ -12,11 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ingredienteativo', function (Blueprint $table) {
-            $table->foreignId('ingrediente_id')->constrained('ingrediente')->onDelete('cascade');
-            $table->foreignId('produto_id')->constrained('produto')->onDelete('cascade');
-    
+            $table->unsignedBigInteger('ingrediente_id');
+            $table->foreign('ingrediente_id')->references('id')->on('ingrediente')->onDelete('cascade');
+            $table->unsignedBigInteger('produto_id');
+            $table->foreign('produto_id')->references('id')->on('produto')->onDelete('cascade');
+
             // Coluna adicional
             $table->boolean('ativo')->default(true);
+            $table->primary(['ingrediente_id', 'produto_id']);
+            $table->timestamps();
         });
     }
 

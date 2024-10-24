@@ -17,7 +17,6 @@ class produtoController extends Controller
         $ingrediente_todos = Ingrediente::all();
         $tipoproduto_todos = TipoProduto::all(); //para o modal
         $tipoproduto = TipoProduto::with('produto')->get(); //para a tabela
-        // tetse
 
         return view('produto.index',compact('produto', 'tipoproduto','ingrediente','tipoproduto_todos','ingrediente_todos'));
     }
@@ -36,19 +35,20 @@ class produtoController extends Controller
 
         $ingrediente_ids = $request->input('igrediente_id');
 
+        if ($ingrediente_ids) {
+            foreach ($ingrediente_ids as $ingrediente_id) {
+                $produto->ingredientes()->attach($ingrediente_id, ['ativo' => 1]);
+            }
+        }
 
-        $tarefa_id = $request->input('tarefa_id');
-        $tarefa = Tarefa::where("id", $tarefa_id)->first();
-        $tarefa->meta_id = $meta->id;
+        return redirect('/produto');
 
-        $ingrediente = new Ingredienteativo();
-        $ingrediente->igrediente_id = $igrediente_id;
-        $ingrediente->ativo = 1;
-        $ingrediente->save();
+    }
 
-        
+    public function ExcluirPRO($id){
+        $produto = Produto::where('id', $id)->first();
+        $produto->delete();
 
-
-
+        return redirect('/produto');
     }
 }

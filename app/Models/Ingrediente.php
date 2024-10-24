@@ -10,7 +10,7 @@ class Ingrediente extends Model
     use HasFactory;
 
     protected $table = "ingrediente";
-    protected $fillable = ['tip_nome'];
+    protected $fillable = ['ing_nome'];
 
     public function produto()
     {

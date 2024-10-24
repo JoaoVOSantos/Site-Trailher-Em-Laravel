@@ -37,7 +37,7 @@
                         <td>{{ $linha->usu_nome }}</td>
                         <td>{{ $linha->usu_senha }}</td>
                         <td>{{ $linha->usu_email }}</td>
-                        <td>{{ $linha->usu_admin }}</td>
+                        <td>@if($linha->usu_admin == 1) Sim @else Não @endif</td>
                         <td>
                             @foreach ($linha->endereco as $endereco)
                             {{ $endereco->end_rua }} - {{ $endereco->end_numero }} - {{ $endereco->end_bairro }}<br>
