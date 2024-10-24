@@ -34,9 +34,10 @@ Route::post("/tipoproduto/upd",[tipoprodutoController::class,"SalvarAlteracaoTP"
 Route::get("/tipoproduto/exc/{id}", [tipoprodutoController::class, "ExcluirTP"])->name('tip_excluir');
 
 Route::get("/produto", [produtoController::class, "index"])->name('produto_index');
-Route::get("/produto/upd/{id}", [produtoController::class, "BuscaAlterarPRO"])->name('pro_alterar'); // falta fazer
+Route::get("/produto/upd/{id}", [produtoController::class, "BuscaAlterarPRO"])->name('pro_alterar');
 Route::get("/produto/exc/{id}", [produtoController::class, "ExcluirPRO"])->name('pro_excluir'); 
-Route::post("/produto", [produtoController::class, "SalvarNovoProduto"]); // falta fazer
+Route::post("/produto", [produtoController::class, "SalvarNovoProduto"]);
+Route::post("/produto/upd",[produtoController::class,"SalvarAlteracaoPRO"])->name('pro_alt_salva');
 
 Route::get("/ingrediente", [ingredienteController::class, "index"])->name('ingrediente_index');
 Route::post("/ingrediente", [ingredienteController::class, "SalvarNovoING"]);

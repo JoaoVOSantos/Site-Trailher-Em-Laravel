@@ -40,9 +40,9 @@
                         <td>{{ $linha->tipoproduto->tip_nome }}</td>
                         <td>
                             @foreach ($linha->ingrediente as $ingredientes)
-
+                            @if ($ingredientes->pivot->ativo) <!-- Verifica se o ingrediente está ativo -->
                             {{ $ingredientes->ing_nome }} <br>
-
+                            @endif
                             @endforeach
                         </td>
                         <td>
@@ -89,15 +89,15 @@
                         <label for="floatingInput">Preço</label>
                     </div>
 
-              
+
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="pro_descricao" max="255">
                         <label for="floatingInput">Descrição</label>
                     </div>
-               
 
-                <!-- select de tipo produto -->
-                
+
+                    <!-- select de tipo produto -->
+
                     <div class="form-floating mb-3">
                         <select class="form-select" aria-label="Default select example" name="tip_id">
                             <option value="0">Selecione um Tipo de Produto</option>
