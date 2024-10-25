@@ -10,18 +10,16 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-    public function indexLogin()
+    public function showLoginForm()
     {
-        return view('cliente.auth.login');
+        return view('cliente.login.index');
     }
 
-
-    public function indexRegister()
+    public function showRegisterForm()
     {
-        return view('cliente.auth.register');
+        return view('cliente.register.index');
     }
 
-    
     public function register(Request $request)
     {
         // Validação dos dados
@@ -42,7 +40,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         // Redirecionar ou retornar uma resposta
-        return redirect()->route('/login')->with('success', 'Registro concluído com sucesso!');
+        return redirect()->route('login')->with('success', 'Registro concluído com sucesso!');
     }
     public function login(Request $request)
     {
@@ -58,7 +56,7 @@ class AuthController extends Controller
             // Login bem-sucedido
             $request->session()->regenerate();
 
-            return redirect()->intended('<perguntar pra leticia>')->with('success', 'Login bem-sucedido!');
+            return redirect()->intended('principal')->with('success', 'Login bem-sucedido!');
         }
 
         // Se as credenciais estiverem erradas

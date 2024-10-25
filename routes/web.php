@@ -10,19 +10,27 @@ use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/principal", [principalController::class, "index"])->name('principal');
+// Rota Teste
 
-Route::get('/register', [AuthController::class, 'indexRegister'])->name('register');
+Route::get("/teste", function () {
+    return view("cliente_template.index");
+});
+
+
+Route::get("/", [principalController::class, "index"])->name('principal');
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/login', [AuthController::class, 'indexLogin'])->name('login');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/login', function () {
-        return view("cliente.auth.login");
-    })->name('login');
+    Route::get('/principal', function () {
+        return view("principal.index");
+    })->name('principal');
 
+   
     Route::post('/usuario', [usuarioController::class, 'SalvarNovoUsuario']);
     Route::get('/usuario', [usuarioController::class, 'index'])->name("usuario_index");
     Route::get("/usuario/upd/{id}", [usuarioController::class, "BuscaAlterarUSU"])->name('usu_alterar');
@@ -59,3 +67,8 @@ Route::middleware('auth')->group(function () {
     Route::get("/pedido/exc/{id}", [pedidoController::class, "ExcluirPED"])->name('ped_excluir');
     Route::post("/pedido/upd", [pedidoController::class, "SalvarAlteracaoPED"])->name('ped_alt_salva');
 });
+
+
+
+
+
