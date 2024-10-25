@@ -3,8 +3,6 @@
 
 @section('conteudo')
 
-
-
 <div class="modal fade " id="modallogin" tabindex="-1" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-fullscreen-md-down modal-md modal-dialog-centered " role="document">
         <div class="modal-content p-4 bg-white">

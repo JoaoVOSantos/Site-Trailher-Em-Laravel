@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/cliente", function () {
     return view("cliente_template.index");
-});
-
-
-Route::get("/", [principalController::class, "index"])->name('principal');
+})->name('cliente');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
@@ -30,7 +27,9 @@ Route::middleware('auth')->group(function () {
         return view("principal.index");
     })->name('principal');
 
-   
+    Route::get('/logout', [AuthController::class, 'showlogoutForm'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout']);
+
     Route::post('/usuario', [usuarioController::class, 'SalvarNovoUsuario']);
     Route::get('/usuario', [usuarioController::class, 'index'])->name("usuario_index");
     Route::get("/usuario/upd/{id}", [usuarioController::class, "BuscaAlterarUSU"])->name('usu_alterar');
@@ -67,8 +66,3 @@ Route::middleware('auth')->group(function () {
     Route::get("/pedido/exc/{id}", [pedidoController::class, "ExcluirPED"])->name('ped_excluir');
     Route::post("/pedido/upd", [pedidoController::class, "SalvarAlteracaoPED"])->name('ped_alt_salva');
 });
-
-
-
-
-

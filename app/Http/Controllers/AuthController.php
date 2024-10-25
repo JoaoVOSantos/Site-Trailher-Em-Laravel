@@ -20,6 +20,10 @@ class AuthController extends Controller
         return view('cliente.register.index');
     }
 
+    public function showlogoutForm(){
+        return view('cliente.logout.index');
+    }
+
     public function register(Request $request)
     {
         // Validação dos dados
@@ -63,5 +67,13 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'As credenciais fornecidas estão incorretas.',
         ]);
+    }
+
+    public function logout(Request $request){
+
+        // Desautenticar o usuário
+        Auth::logout();
+
+        return redirect()->route(route: 'cliente')->with('success', 'Logout bem-sucedido!');
     }
 }
