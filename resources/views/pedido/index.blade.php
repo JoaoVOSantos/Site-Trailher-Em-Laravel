@@ -23,9 +23,10 @@
                     <tr>
                         <th>Id</th>
                         <th>Nome Do Usuario</th>
-                        <th>Valor do Pedido</th>
+                        <th>Valor</th>
                         <th>Quantidade</th>
                         <th>Status do Pagamento</th>
+                        <th>Data do Pagamento</th>
                         <th>Endereço</th>
                         <th>Opções</th>
                     </tr>
@@ -36,8 +37,13 @@
                         <td>{{ $linha->id }}</td>
                         <td>{{ $linha->usuario->usu_nome }}</td>
                         <td>{{ $linha->ped_valor }}</td>
-                        <td>{{ $linha-> }}</td>
-                        <td>{{ $linha->ped_status }}</td>
+                        <td>{{ $linha->ped_quantidade}}</td>
+                        @if($linha->ped_status == 1)
+                        <td>Pago</td>
+                        @else
+                        <td>Aguardando Pagamento</td>
+                        @endif
+                        <td>{{ $linha->ped_data_pago }}</td>
                         <td>
                             @foreach ($linha->usuario->endereco as $item)
                             {{ $item->end_rua }} - {{ $item->end_numero }} - {{ $item->end_bairro }} <br>
@@ -45,13 +51,13 @@
                         </td>
                         <td>
 
-                            <a href='{{ route('pro_alterar', ["id"=>$linha->id ]) }}' class="btn btn-primary btn-sm">
+                            <a href='{{ route('ped_alterar', ["id"=>$linha->id ]) }}' class="btn btn-primary btn-sm">
                                 <i class="fa fa-pencil"> </i>
                             </a>
 
                             |
 
-                            <a href="{{ route('pro_excluir', ["id"=>$linha->id ]) }}" class="btn btn-danger btn-sm">
+                            <a href="{{ route('ped_excluir', ["id"=>$linha->id ]) }}" class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash"> </i>
                             </a>
 
@@ -77,55 +83,45 @@
 
                 <div class="modal-body">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="usu_nome">
-                        <label for="floatingInput">Nome do Usuario</label>
+                        <select class="form-select" name="usuario_id" id="usuario_id">
+                            <option value="">Selecione um usuario</option>
+                            @foreach ($usuarios as $usuario)
+                            <option value="{{ $usuario->id }}">
+                                {{ $usuario->usu_nome }}
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="form-floating mb-3">
                         <input type="number" min="0" step="0.01" class="form-control" name="ped_valor">
                         <label for="floatingInput">Valor do Pedido</label>
                     </div>
-
-
                     <div class="form-floating mb-3">
-                        <input type="number" min="0" step="0.01" class="form-control" name="ped_preco">
-                        <label for="floatingInput">Valor Pago</label>
+                        <input type="date" min="0" step="0.01" class="form-control" name="ped_data">
+                        <label for="floatingInput">Data do Pagamento</label>
                     </div>
 
+                    <label for="floatingInput">Pago?</label>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="ped_quantidade">
-                        <label for="floatingInput">Quantidade</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ped_status" value="1" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Sim
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ped_status" value="0" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Não
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="ped_status">
-                        <label for="floatingInput">Status de Pagamento</label>
+                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                     </div>
-
-
-                    <!-- select de tipo produto -->
-
-                    <div class="form-floating mb-3">
-                        <select class="form-select" aria-label="Default select example" name="tip_id">
-                            <option value="0">Selecione um Tipo de Produto</option>
-                            @foreach ($tipoproduto_todos as $item)
-                            <option value="{{ $item->id }}">{{ $item->tip_nome }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <label for="floatingInput">Selecione os Ingredientes</label>
-                    @foreach ($ingrediente_todos as $item)
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{{ $item->id }}" name="ingrediente_id[]">
-                        <label class="form-check-label" for="ingrediente_{{ $item->id }}">
-                            {{ $item->ing_nome }}
-                        </label>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
 
             </form>
         </div>
