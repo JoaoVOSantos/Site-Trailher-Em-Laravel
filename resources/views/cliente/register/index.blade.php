@@ -15,36 +15,37 @@
                 <div class="login-detail">
                     <div class="login-form p-0">
                         <div class="col-lg-12 mx-auto">
-                            <form id="login-form" class="" method="POST" action="{{ route('login') }}">
+                            <form id="login-form" class="" method="POST" action="{{ route('register') }}">
                                 @csrf
 
                                 <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Nome">
                                     <label for="floatingInput">Nome</label>
-                                    <input type="name" class="form-control" name="name">
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <label for="floatingInput">Email</label>
-                                    <input type="email" class="form-control" name="email">
+                                    <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="Email">
+                                    <label for="floatingEmail">Email</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <label for="floatingInput">Senha</label>
-                                    <input type="password" class="form-control" name="password">
-
+                                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Senha">
+                                    <label for="floatingPassword">Senha</label>
                                 </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="floatingPassword" name="password_confirmation" placeholder="Senha">
+                                    <label for="floatingPassword">Confirmar Senha</label>
+                                </div>
+
                                 <div class="modal-footer mt-5 d-flex justify-content-center">
-                                <button type="submit" class="btn btn-red hvr-sweep-to-right dark-sweep">Login</button>
-                                <button type="button" onclick="window.location.href='{{ route('register') }}'" class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Register</button>
-
+                                    <button type="submit" class="btn btn-red hvr-sweep-to-right dark-sweep">Registrar</button>
                                 </div>
-
                                 <div class="checkbox d-flex justify-content-between mt-4">
                                     <p class="lost-password">
-                                        <a href="{{ route('register') }}">Não possui uma conta? Registre-se</a>
+                                        <a href="{{ route('login') }}">Ja possui uma conta? Conecte-se</a>
                                     </p>
                                 </div>
-
                             </form>
 
                         </div>

@@ -19,26 +19,18 @@
                                 @csrf
 
                                 <div class="form-floating mb-3">
-                                    <label for="floatingInput">Email</label>
-                                    <input type="email" class="form-control" name="email">
-
+                                    <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="Email">
+                                    <label for="floatingEmail">Email</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <label for="floatingInput">Senha</label>
-                                    <input type="password" class="form-control" name="password">
-
+                                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Senha">
+                                    <label for="floatingPassword">Senha</label>
                                 </div>
+
                                 <div class="modal-footer mt-5 d-flex justify-content-center">
                                 <button type="submit" class="btn btn-red hvr-sweep-to-right dark-sweep">Login</button>
-                                <button type="button" onclick="window.location.href='{{ route('register') }}'" class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Register</button>
-
-                                </div>
-
-                                <div class="checkbox d-flex justify-content-between mt-4">
-                                    <p class="lost-password">
-                                        <a href="{{ route('register') }}">Não possui uma conta? Registre-se</a>
-                                    </p>
+                                <button type="button" onclick="window.location.href='{{ route('register') }}'" class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Registre-se</button>
                                 </div>
 
                             </form>
