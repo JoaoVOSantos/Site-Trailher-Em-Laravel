@@ -62,7 +62,7 @@
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{route('cliente')}}">
                     <span>
                         Trailher Da Karen
                     </span>
