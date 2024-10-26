@@ -8,6 +8,7 @@ use App\Http\Controllers\principalController;
 use App\Http\Controllers\produtoController;
 use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Rota Teste
@@ -22,13 +23,16 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/principal', function () {
-        return view("principal.index");
-    })->name('principal');
+
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', [AuthController::class, 'showlogoutForm'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout']);
+
+
+    Route::get("/administrador", function () {
+        return view("admin_template.index");
+    })->name('administrador');
 
     Route::post('/usuario', [usuarioController::class, 'SalvarNovoUsuario']);
     Route::get('/usuario', [usuarioController::class, 'index'])->name("usuario_index");
@@ -66,3 +70,8 @@ Route::middleware('auth')->group(function () {
     Route::get("/pedido/exc/{id}", [pedidoController::class, "ExcluirPED"])->name('ped_excluir');
     Route::post("/pedido/upd", [pedidoController::class, "SalvarAlteracaoPED"])->name('ped_alt_salva');
 });
+
+
+
+    
+

@@ -79,7 +79,7 @@
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Usuario:</div>
-                    João Vitor
+                    {{Auth::user()->usu_nome}}
                 </div>
             </nav>
         </div>
