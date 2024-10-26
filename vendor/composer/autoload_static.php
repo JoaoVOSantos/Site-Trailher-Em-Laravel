@@ -337,8 +337,8 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -508,8 +508,24 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
     );
 
     public static $classMap = array (
+        'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\enderecoController' => __DIR__ . '/../..' . '/app/Http/Controllers/enderecoController.php',
+        'App\\Http\\Controllers\\ingredienteController' => __DIR__ . '/../..' . '/app/Http/Controllers/ingredienteController.php',
+        'App\\Http\\Controllers\\pedidoController' => __DIR__ . '/../..' . '/app/Http/Controllers/pedidoController.php',
+        'App\\Http\\Controllers\\principalController' => __DIR__ . '/../..' . '/app/Http/Controllers/principalController.php',
+        'App\\Http\\Controllers\\produtoController' => __DIR__ . '/../..' . '/app/Http/Controllers/produtoController.php',
+        'App\\Http\\Controllers\\tipoprodutoController' => __DIR__ . '/../..' . '/app/Http/Controllers/tipoprodutoController.php',
+        'App\\Http\\Controllers\\usuarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/usuarioController.php',
+        'App\\Http\\Middleware\\ChecarAdmin' => __DIR__ . '/../..' . '/app/Http/Middleware/ChecarAdmin.php',
+        'App\\Models\\Endereco' => __DIR__ . '/../..' . '/app/Models/Endereco.php',
+        'App\\Models\\Ingrediente' => __DIR__ . '/../..' . '/app/Models/Ingrediente.php',
+        'App\\Models\\Ingredienteativo' => __DIR__ . '/../..' . '/app/Models/Ingredienteativo.php',
+        'App\\Models\\Pedido' => __DIR__ . '/../..' . '/app/Models/Pedido.php',
+        'App\\Models\\Produto' => __DIR__ . '/../..' . '/app/Models/Produto.php',
+        'App\\Models\\TipoProduto' => __DIR__ . '/../..' . '/app/Models/TipoProduto.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Usuario' => __DIR__ . '/../..' . '/app/Models/Usuario.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
