@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 // Rota Teste
 
-Route::get("/cliente", function () {
+Route::get("/", function () {
     return view("cliente_template.index");
 })->name('cliente');
 

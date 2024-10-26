@@ -11,15 +11,16 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $table = 'usuario';
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'usu_nome',
+        'usu_email',
+        'usu_senha',
     ];
 
     /**
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'usu_senha',
         'remember_token',
     ];
 
@@ -41,7 +42,15 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'usu_senha' => 'hashed',
         ];
+    }
+
+    
+    public function endereco(){
+        return $this->belongsToMany(Endereco::class,'endereco_usuario');
+    }
+    public function pedido(){
+        return $this->hasMany(Pedido::class, 'usuario_id');
     }
 }
