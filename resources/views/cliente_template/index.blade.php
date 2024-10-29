@@ -62,7 +62,7 @@
     <header class="header_section">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{route('cliente')}}">
                     <span>
                         Trailher Da Karen
                     </span>
@@ -75,7 +75,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mx-auto ">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Principal <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="">Principal <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="menu.html">Cardápio</a>

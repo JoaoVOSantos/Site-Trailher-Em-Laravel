@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 
 // Rota Teste
 
+Route::get("/", function () {
+    return view("cliente_template.index");
+})->name('cliente');
+
 Route::get("/cliente", function () {
     return view("cliente_template.index");
 })->name('cliente');
@@ -23,9 +27,6 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/principal', function () {
-        return view("principal.index");
-    })->name('principal');
 
     Route::get('/logout', [AuthController::class, 'showlogoutForm'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout']);
