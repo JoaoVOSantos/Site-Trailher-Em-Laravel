@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\cardapioController;
 use App\Http\Controllers\enderecoController;
 use App\Http\Controllers\ingredienteController;
 use App\Http\Controllers\pedidoController;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", function () {
     return view("cliente_template.index");
 })->name('cliente');
+
+route::get("/principal", [principalController::class, "index"])->name('principal');
+route::get("/cardapio", [cardapioController::class, "index"])->name('cardapio');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
