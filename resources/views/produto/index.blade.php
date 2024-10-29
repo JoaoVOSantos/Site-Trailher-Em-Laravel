@@ -107,14 +107,20 @@
                         </select>
                     </div>
                     <label for="floatingInput">Selecione os Ingredientes</label>
-                    @foreach ($ingrediente_todos as $item)
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="{{ $item->id }}" name="ingrediente_id[]">
-                        <label class="form-check-label" for="ingrediente_{{ $item->id }}">
-                            {{ $item->ing_nome }}
-                        </label>
+                    <input type="text" class="form-control mb-3" id="searchIngredients" placeholder="Pesquisar Ingredientes">
+
+                    <div class="row" id="ingredientsList">
+                        @foreach ($ingrediente_todos as $item)
+                        <div class="col-md-4 mb-3 ingredient-item">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="{{ $item->id }}" name="ingrediente_id[]" id="ingrediente_{{ $item->id }}">
+                                <label class="form-check-label" for="ingrediente_{{ $item->id }}">
+                                    {{ $item->ing_nome }}
+                                </label>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -125,4 +131,16 @@
         </div>
     </div>
 </div>
+<script>
+    // Função para filtrar os ingredientes com base na pesquisa
+    document.getElementById('searchIngredients').addEventListener('keyup', function() {
+        const query = this.value.toLowerCase();
+        const ingredients = document.querySelectorAll('.ingredient-item');
+
+        ingredients.forEach(function(item) {
+            const ingredientName = item.textContent.toLowerCase();
+            item.style.display = ingredientName.includes(query) ? '' : 'none';
+        });
+    });
+</script>
 @endsection

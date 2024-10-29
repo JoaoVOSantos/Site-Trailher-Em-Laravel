@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\cardapioController;
 use App\Http\Controllers\enderecoController;
 use App\Http\Controllers\ingredienteController;
 use App\Http\Controllers\pedidoController;
@@ -8,17 +9,24 @@ use App\Http\Controllers\principalController;
 use App\Http\Controllers\produtoController;
 use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Rota Teste
 
 Route::get("/", function () {
+<<<<<<< HEAD
     return view("cliente_template.index");
 })->name('cliente');
 
 Route::get("/cliente", function () {
+=======
+>>>>>>> a84fa9e674d8192723d94e244f4b771a39630e1e
     return view("cliente_template.index");
 })->name('cliente');
+
+route::get("/principal", [principalController::class, "index"])->name('principal');
+route::get("/cardapio", [cardapioController::class, "index"])->name('cardapio');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
@@ -26,10 +34,20 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
+<<<<<<< HEAD
 Route::middleware('auth')->group(function () {
+=======
+
+Route::middleware(['auth'])->group(function () {
+>>>>>>> a84fa9e674d8192723d94e244f4b771a39630e1e
 
     Route::get('/logout', [AuthController::class, 'showlogoutForm'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout']);
+
+
+    Route::get("/administrador", function () {
+        return view("admin_template.index");
+    })->name('administrador');
 
     Route::post('/usuario', [usuarioController::class, 'SalvarNovoUsuario']);
     Route::get('/usuario', [usuarioController::class, 'index'])->name("usuario_index");
@@ -67,3 +85,8 @@ Route::middleware('auth')->group(function () {
     Route::get("/pedido/exc/{id}", [pedidoController::class, "ExcluirPED"])->name('ped_excluir');
     Route::post("/pedido/upd", [pedidoController::class, "SalvarAlteracaoPED"])->name('ped_alt_salva');
 });
+
+
+
+    
+

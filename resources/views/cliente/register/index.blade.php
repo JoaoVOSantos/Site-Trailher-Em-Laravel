@@ -15,24 +15,32 @@
                         <div class="col-lg-12 mx-auto">
                             <form id="login-form" class="" method="POST" action="{{ route('register') }}">
                                 @csrf
-
+                                @if($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Nome">
+                                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Nome" required>
                                     <label for="floatingInput">Nome</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="Email" required>
                                     <label for="floatingEmail">Email</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Senha">
+                                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Senha" required>
                                     <label for="floatingPassword">Senha</label>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="floatingPassword" name="password_confirmation" placeholder="Senha">
+                                    <input type="password" class="form-control" id="floatingPassword" name="password_confirmation" placeholder="Senha" required>
                                     <label for="floatingPassword">Confirmar Senha</label>
                                 </div>
 
