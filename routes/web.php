@@ -9,11 +9,10 @@ use App\Http\Controllers\principalController;
 use App\Http\Controllers\produtoController;
 use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\carrinhoController;
 
 // Rota Teste
-
 Route::get("/", function () {
     return view("cliente_template.index");
 })->name('cliente');
@@ -27,11 +26,19 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
+// Rota do carrinho feito com gpt, porem não é diferente de qualquer outra rota que ja tenha feito
+
 
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', [AuthController::class, 'showlogoutForm'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/adicionar-ao-carrinho/{id}', [carrinhoController::class, 'adicionar'])->name('adicionar.carrinho');
+    Route::patch('/carrinho/update/{id}', [carrinhoController::class, 'update'])->name('carrinho.update');
+    Route::patch('/carrinho/update/add/{id}', [carrinhoController::class, 'add'])->name('carrinho.add');
+
+    Route::get('/carrinho', [carrinhoController::class, 'mostrarCarrinho'])->name('carrinho');
 
 
     Route::get("/administrador", function () {
