@@ -22,16 +22,6 @@ class pedidoController extends Controller
 
     public function SalvarNovoPED(Request $request)
     {
-        $request->validade([
-                'usuario_id' => 'required|integer|exists:usuario,id', // Certifica que o ID do usuário existe na tabela users
-                'ped_valor' => 'required|numeric|min:0', // Valor monetário não deve ser negativo
-                'ped_status' => 'required|string|max:50', // Define um limite de caracteres para o status
-                'ped_data' => 'required|date', // Verifica se é uma data válida
-        ]);
-
-        Pedido::create([
-            
-        ]);
 
         $usuario_id = $request->input('usuario_id');
         $ped_valor = $request->input('ped_valor');
