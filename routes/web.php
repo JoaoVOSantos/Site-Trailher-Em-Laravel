@@ -12,6 +12,12 @@ use App\Http\Controllers\usuarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\carrinhoController;
 
+/*
+view -> o caminho das pastas ex: cliente.metas.index
+route -> o caminho que os forms e as urls vao fazer ex: form({{route('cliente')}})  route()->name('cliente');
+controller ->ele vem da rota e retorna uma rota ou uma view depois de fazer o algoritimo
+*/
+
 // Rota Teste
 Route::get("/", function () {
     return view("cliente_template.index");
