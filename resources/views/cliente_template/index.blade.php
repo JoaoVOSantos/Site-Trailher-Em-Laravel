@@ -97,10 +97,11 @@
                         </a>
                         @endauth
 
+                        <span class="badge" style="position: absolute; top: 35px; right: 50px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">
+                            {{ session('carrinho') ? count(session('carrinho')) : 0 }}
+                        </span>
                         <a class="cart_link" href="{{route('carrinho')}}">
-                            <span class="badge" style="position: absolute; top: -5px; right: -10px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">
-                                {{ session('carrinho') ? count(session('carrinho')) : 0 }}
-                            </span>
+                            
                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
                                 <g>
                                     <g>
