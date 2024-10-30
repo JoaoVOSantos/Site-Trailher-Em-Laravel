@@ -67,11 +67,11 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Pagina Inicial
                         </a>
-                        <a class="nav-link" href="">
+                                <a class="nav-link" href="{{route('cardapio')}}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Pagina Compras
                         </a>
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{route('carrinho')}}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Pagina de Carrinho
                         </a>

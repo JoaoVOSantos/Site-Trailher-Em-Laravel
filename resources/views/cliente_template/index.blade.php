@@ -75,11 +75,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mx-auto ">
                         <li class="nav-item active">
-<<<<<<< HEAD
-                            <a class="nav-link" href="">Principal <span class="sr-only">(current)</span></a>
-=======
                             <a class="nav-link" href="{{route('principal')}}">Principal <span class="sr-only">(current)</span></a>
->>>>>>> a84fa9e674d8192723d94e244f4b771a39630e1e
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('cardapio')}}">Cardápio</a>
