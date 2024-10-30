@@ -85,7 +85,7 @@ class produtoController extends Controller
             foreach ($ingrediente_ids as $ingrediente_id) {
                 $ingredientesAtivos[$ingrediente_id] = ['ativo' => true]; // Define como ativo
             }
-        }   
+        }
 
         $produto->ingrediente()->sync($ingredientesAtivos);
 

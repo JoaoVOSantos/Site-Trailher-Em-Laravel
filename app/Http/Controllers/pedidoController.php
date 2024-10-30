@@ -22,6 +22,17 @@ class pedidoController extends Controller
 
     public function SalvarNovoPED(Request $request)
     {
+        $request->validade([
+                'usuario_id' => 'required|integer|exists:usuario,id', // Certifica que o ID do usuário existe na tabela users
+                'ped_valor' => 'required|numeric|min:0', // Valor monetário não deve ser negativo
+                'ped_status' => 'required|string|max:50', // Define um limite de caracteres para o status
+                'ped_data' => 'required|date', // Verifica se é uma data válida
+        ]);
+
+        Pedido::create([
+            
+        ]);
+
         $usuario_id = $request->input('usuario_id');
         $ped_valor = $request->input('ped_valor');
         $ped_status = $request->input('ped_status');
@@ -38,7 +49,7 @@ class pedidoController extends Controller
         $pedido->ped_quantidade = $totalPedidos + 1;
         $pedido->save();
 
-        return redirect("/pedido");
+        return redirect()->route('pedido_index')->with('success', 'Dados salvos com sucesso!');
     }
 
     public function ExcluirPED($id)
@@ -72,7 +83,7 @@ class pedidoController extends Controller
         $totalPedidos = Pedido::where('usuario_id', $usuario_id)->count();
         $pedido->ped_quantidade = $totalPedidos + 1;
 
-        $pedido->save(); 
+        $pedido->save();
 
         return redirect("/pedido");
     }
