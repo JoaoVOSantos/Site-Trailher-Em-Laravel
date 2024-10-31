@@ -18,6 +18,14 @@ view -> o caminho das pastas ex: cliente.metas.index
 route -> o caminho que os forms e as urls vao fazer ex: form({{route('cliente')}})  route()->name('cliente');
 controller ->ele vem da rota e retorna uma rota ou uma view depois de fazer o algoritimo
 */
+Route::get('/mercadopago/create', [PagamentoController::class, 'createPaymentPreference'])->name('mercadopago.create');
+Route::get('/mercadopago/success', function () {
+return "Pagamento aprovado!";
+})->name('mercadopago.success');
+
+Route::get('/mercadopago/failure', function () {
+    return "Falha no pagamento!";
+})->name('mercadopago.failure');
 
 // Rota Teste
 Route::get("/", function () {
@@ -45,7 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/carrinho/update/add/{id}', [carrinhoController::class, 'add'])->name('carrinho.add');
     Route::get('/carrinho', [carrinhoController::class, 'mostrarCarrinho'])->name('carrinho');
 
-    Route::post('/comprar', [PagamentoController::class, 'criarPagamento'])->name('comprar');
+   
 
 
     Route::get("/administrador", function () {
