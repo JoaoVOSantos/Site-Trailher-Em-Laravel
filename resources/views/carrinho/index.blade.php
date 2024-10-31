@@ -74,7 +74,7 @@
                 </table>
 
                 <div class="text-center mt-4">
-                    <button class="btn btn-primary mb-3">Comprar</button>
+                    <button class="btn btn-success mb-3">Comprar</button>
                 </div>
             </div>
         </div>
