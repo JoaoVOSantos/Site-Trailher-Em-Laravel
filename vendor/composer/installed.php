@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '8620dffa06cb30cfd748e1448107e150cb40a21c',
+        'reference' => '17093eaa646a22cc2baac9665726c3c01d7eaa04',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -388,7 +388,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '8620dffa06cb30cfd748e1448107e150cb40a21c',
+            'reference' => '17093eaa646a22cc2baac9665726c3c01d7eaa04',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -481,6 +481,15 @@
             'reference' => '2d6702ff215bf922936ccc1ad31007edc76451b9',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/mime-type-detection',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'mercadopago/dx-php' => array(
+            'pretty_version' => '3.0.8',
+            'version' => '3.0.8.0',
+            'reference' => 'b03c3c789c7d4fedfcf7d54cf57993e77c95aabb',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mercadopago/dx-php',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -754,8 +763,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '3.0.0',
-                1 => '1.0|2.0|3.0',
+                0 => '1.0|2.0|3.0',
+                1 => '3.0.0',
             ),
         ),
         'psr/simple-cache' => array(

@@ -11,6 +11,7 @@ use App\Http\Controllers\tipoprodutoController;
 use App\Http\Controllers\usuarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\carrinhoController;
+use App\Http\Controllers\PagamentoController;
 
 /*
 view -> o caminho das pastas ex: cliente.metas.index
@@ -43,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/carrinho/update/{id}', [carrinhoController::class, 'update'])->name('carrinho.update');
     Route::patch('/carrinho/update/add/{id}', [carrinhoController::class, 'add'])->name('carrinho.add');
     Route::get('/carrinho', [carrinhoController::class, 'mostrarCarrinho'])->name('carrinho');
+
+    Route::post('/comprar', [PagamentoController::class, 'criarPagamento'])->name('comprar');
 
 
     Route::get("/administrador", function () {

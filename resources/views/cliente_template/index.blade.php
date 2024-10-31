@@ -214,8 +214,10 @@
 <!-- Google Map -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
 </script>
-<!-- End Google Map -->
+<!-- Mercado Pago -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
 
+<!-- Para abrir o modal login ao clicar no botao login -->
 <script>
     $(document).ready(function() {
         $('#modallogin').modal('show'); // Abre o modal ao carregar a página
