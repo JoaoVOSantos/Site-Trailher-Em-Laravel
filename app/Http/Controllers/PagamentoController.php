@@ -6,6 +6,7 @@ use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Exceptions\MPApiException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PagamentoController extends Controller
 {
@@ -14,28 +15,31 @@ class PagamentoController extends Controller
     {
         // Obtém o access token do arquivo .env
         $mpAccessToken = env('MERCADO_PAGO_ACCESS_TOKEN');
-        
+
         // Configura o token no SDK do Mercado Pago
         MercadoPagoConfig::setAccessToken($mpAccessToken);
-        
+
         // Opcional: Configura o ambiente para testes locais
         MercadoPagoConfig::setRuntimeEnviroment(MercadoPagoConfig::LOCAL);
     }
 
     // Função para criar uma nova preferência de pagamento
-    public function createPaymentPreference()
+    public function createPaymentPreference(Request $request)
     {
         // Chama a função para autenticar o SDK do Mercado Pago
         $this->authenticate();
 
+        // Obtém o total do pedido a partir do request
+        $total = $request->input('total');
+
         // Define o item (produto)
         $product1 = [
-            "id" => "1234567890",
-            "title" => "Produto 1",
-            "description" => "Descrição do Produto 1",
+            "id" => Auth::id(),
+            "title" => "Produtos Trailher da Karen",
+            "description" => "Comida Comprada em Trailher da Karen",
             "currency_id" => "BRL",
             "quantity" => 1,
-            "unit_price" => 10.00  // Preço unitário do produto
+            "unit_price" => (float) $total  // Usa o valor total do carrinho
         ];
 
         // Definir os itens da compra
@@ -43,9 +47,9 @@ class PagamentoController extends Controller
 
         // Definir o pagador (cliente)
         $payer = [
-            "name" => "Vitor",
-            "surname" => "Hugo",
-            "email" => "nicolas@gmail.com"
+            "name" => Auth::user()->usu_nome, // Você pode obter o nome do usuário logado
+            "surname" => " ", // Certifique-se de que isso esteja disponível
+            "email" => Auth::user()->usu_email // E-mail do usuário logado
         ];
 
         // Chama a função para montar a requisição
@@ -60,12 +64,12 @@ class PagamentoController extends Controller
 
             // Redireciona o usuário para o Checkout do Mercado Pago
             return redirect($preference->init_point);
-
         } catch (MPApiException $error) {
             // Retorna uma mensagem de erro em caso de falha
             return response()->json(['error' => $error->getMessage()], 500);
         }
     }
+
 
     // Função para criar o array de requisição para a preferência
     private function createPreferenceRequest($items, $payer): array
@@ -77,7 +81,7 @@ class PagamentoController extends Controller
         ];
 
         $backUrls = [
-           'success' => route('carrinho'),
+            'success' => route('carrinho'),
             'failure' => route('carrinho'),
         ];
 
@@ -110,5 +114,17 @@ class PagamentoController extends Controller
         } catch (MPApiException $error) {
             return response()->json(['error' => $error->getMessage()], 500);
         }
+    }
+
+    public function paymentSuccess(Request $request)
+    {
+        // Aqui você pode adicionar lógica para verificar se o pagamento foi realmente bem-sucedido
+        // e se os dados do pagamento estão corretos.
+
+        // Limpa o carrinho da sessão
+        session()->forget('carrinho');
+
+        // Você pode redirecionar o usuário para uma página de confirmação
+        return view('mercadopago.success'); // ou redirecionar para onde desejar
     }
 }

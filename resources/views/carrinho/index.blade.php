@@ -23,6 +23,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php $totalCarrinho = 0; @endphp <!-- Inicializa a variável total -->
                                     @foreach (session('carrinho') as $id => $item)
                                         <tr>
                                             @foreach ($produto as $produtoItem)
@@ -49,23 +50,23 @@
                                                     </td>
                                                 @endif
                                             @endforeach
-                                            <td class="py-2">R$ {{ $item['pro_preco'] }}</td>
+                                            <td class="py-2">R$ {{ number_format($item['pro_preco'], 2, ',', '.') }}</td>
                                             <td class="py-2">{{ $item['quantidade'] }}</td>
-                                            <td class="py-2" id="">R$
-                                    
-                                                {{$totalItem = $item['pro_preco'] * $item['quantidade'];}}
+                                            <td class="py-2">R$
+                                                @php
+                                                    $totalItem = $item['pro_preco'] * $item['quantidade'];
+                                                    $totalCarrinho += $totalItem; // Acumula o total
+                                                @endphp
+                                                {{ number_format($totalItem, 2, ',', '.') }}
                                             </td>
 
-
                                             <td>
-                                                <form action="{{ route('carrinho.update', $id) }}" method="POST"
-                                                    class="d-inline">
+                                                <form action="{{ route('carrinho.update', $id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit" class="btn btn-sm btn-danger">-</button>
                                                 </form>
-                                                <form action="{{ route('carrinho.add', $id) }}" method="POST"
-                                                    class="d-inline">
+                                                <form action="{{ route('carrinho.add', $id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('PATCH')
                                                     <button type="submit" class="btn btn-sm btn-success">+</button>
@@ -77,13 +78,11 @@
                             </table>
 
                             <div class="text-center mt-4">
+                                <p>Total: R$ {{ number_format($totalCarrinho, 2, ',', '.') }}</p> <!-- Exibe o total do carrinho -->
                                 <form action="{{ route('comprar') }}" id="paymentForm" method="POST">
                                     @csrf
-                                    
-                                    <input type="hidden" id="totalInput" name="total" value="1">
-                                   
-
-                                    <button class="btn mb-3 btn-success" type="submt">Comprar</button>
+                                    <input type="hidden" id="totalInput" name="total" value="{{ $totalCarrinho }}">
+                                    <button class="btn mb-3 btn-success" type="submit">Comprar</button>
                                 </form>
                             </div>
                         </div>
@@ -94,5 +93,4 @@
             </div>
         </div>
     </section>
-
 @endsection
