@@ -102,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mercadopago/success', [PagamentoController::class, 'paymentSuccess'])->name('mercadopago.success');
     Route::get('/voltarCarrinho', [carrinhoController::class, 'index'])->name('voltarCarrinho');
 
-    Route::get('/sobre',[principalController::class],'sobre')->name('sobre');
+    Route::get('/sobre',[principalController::class, 'sobre'])->name('sobre');
 
 
     Route::get('/mercadopago/failure', function () {
