@@ -19,42 +19,7 @@ route -> o caminho que os forms e as urls vao fazer ex: form({{route('cliente')}
 controller ->ele vem da rota e retorna uma rota ou uma view depois de fazer o algoritimo
 */
 
-
-// Rota Teste
-Route::get("/", function () {
-    return view("cliente_template.index");
-})->name('cliente');
-
-route::get("/principal", [principalController::class, "index"])->name('principal');
-route::get("/cardapio", [cardapioController::class, "index"])->name('cardapio');
-
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
-
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-
-
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('/logout', [AuthController::class, 'showlogoutForm'])->name('logout');
-    Route::post('/logout', [AuthController::class, 'logout']);
-
-    // Rota do carrinho feito com gpt, porem não é diferente de qualquer outra rota que ja tenha feito
-    Route::get('/adicionar-ao-carrinho/{id}', [carrinhoController::class, 'adicionar'])->name('adicionar.carrinho');
-    Route::patch('/carrinho/update/{id}', [carrinhoController::class, 'update'])->name('carrinho.update');
-    Route::patch('/carrinho/update/add/{id}', [carrinhoController::class, 'add'])->name('carrinho.add');
-    Route::get('/carrinho', [carrinhoController::class, 'mostrarCarrinho'])->name('carrinho');
-
-
-    Route::post('/mercadopago/create', [PagamentoController::class, 'createPaymentPreference'])->name('mercadopago.create');
-    Route::get('/mercadopago/success', [PagamentoController::class, 'paymentSuccess'])->name('mercadopago.success');
-    Route::get('/voltarCarrinho', [carrinhoController::class, 'index'])->name('voltarCarrinho');
-
-
-    Route::get('/mercadopago/failure', function () {
-        return "Falha no pagamento!";
-    })->name('mercadopago.failure');
+Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get("/administrador", function () {
         return view("admin_template.index");
@@ -95,4 +60,51 @@ Route::middleware(['auth'])->group(function () {
     Route::get("/pedido/upd/{id}", [pedidoController::class, "BuscaAlterarPED"])->name('ped_alterar');
     Route::get("/pedido/exc/{id}", [pedidoController::class, "ExcluirPED"])->name('ped_excluir');
     Route::post("/pedido/upd", [pedidoController::class, "SalvarAlteracaoPED"])->name('ped_alt_salva');
+
+
+
+
+});
+    
+// Rota Teste
+Route::get("/", function () {
+    return view("cliente_template.index");
+})->name('cliente');
+
+route::get("/principal", [principalController::class, "index"])->name('principal');
+route::get("/cardapio", [cardapioController::class, "index"])->name('cardapio');
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/logout', [AuthController::class, 'showlogoutForm'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/areacliente', [usuarioController::class, 'mostrarAreaCliente'])->name('mostrarAreaCliente');
+    Route::post('/areacliente/endereco', [usuarioController::class, 'SalvarNovoEndereco'])->name('SalvarNovoEndereco');
+    Route::post('/areacliente/usuario', [usuarioController::class, 'salvarNovosDados'])->name('salvarNovosDados');
+
+
+    // Rota do carrinho feito com gpt, porem não é diferente de qualquer outra rota que ja tenha feito
+    Route::get('/adicionar-ao-carrinho/{id}', [carrinhoController::class, 'adicionar'])->name('adicionar.carrinho');
+    Route::patch('/carrinho/update/{id}', [carrinhoController::class, 'update'])->name('carrinho.update');
+    Route::patch('/carrinho/update/add/{id}', [carrinhoController::class, 'add'])->name('carrinho.add');
+    Route::get('/carrinho', [carrinhoController::class, 'mostrarCarrinho'])->name('carrinho');
+
+
+    Route::post('/mercadopago/create', [PagamentoController::class, 'createPaymentPreference'])->name('mercadopago.create');
+    Route::get('/mercadopago/success', [PagamentoController::class, 'paymentSuccess'])->name('mercadopago.success');
+    Route::get('/voltarCarrinho', [carrinhoController::class, 'index'])->name('voltarCarrinho');
+
+
+    Route::get('/mercadopago/failure', function () {
+        return "Falha no pagamento!";
+    })->name('mercadopago.failure');
+
 });

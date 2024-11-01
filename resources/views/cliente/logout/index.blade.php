@@ -23,6 +23,10 @@
                                 <a href="{{ route('administrador') }}" class="btn btn-red hvr-sweep-to-right dark-sweep">Área Administrador</a>
                                 @endif
                             </div>
+
+                            <div class="d-flex justify-content-center mt-3">
+                                <a href="{{ route('mostrarAreaCliente') }}" class="btn btn-red hvr-sweep-to-right dark-sweep">Área Cliente</a>
+                            </div>
                         </div>
                     </div>
                 </div>

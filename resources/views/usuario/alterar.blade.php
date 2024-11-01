@@ -68,10 +68,6 @@
                         @endif
 
                         <label for="floatingInput">Selecione um Endereço</label>
-
-
-
-
                         @foreach ($enderecos as $item)
                             @if (
                                 $usuario->endereco->contains(function ($endereco) use ($item) {
