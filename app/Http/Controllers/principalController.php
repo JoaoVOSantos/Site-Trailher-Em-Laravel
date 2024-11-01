@@ -17,4 +17,9 @@ class principalController extends Controller
 
         return view('principal.index', compact('produtosMaisPedidas'));
     }
+
+    public function sobre(){
+        
+        return view('principal.sobre.index');
+    }
 }
