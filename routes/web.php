@@ -47,8 +47,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/carrinho', [carrinhoController::class, 'mostrarCarrinho'])->name('carrinho');
 
 
-    Route::get('/mercadopago/create', [PagamentoController::class, 'createPaymentPreference'])->name('mercadopago.create');
+    Route::post('/mercadopago/create', [PagamentoController::class, 'createPaymentPreference'])->name('mercadopago.create');
     Route::get('/mercadopago/success', [PagamentoController::class, 'paymentSuccess'])->name('mercadopago.success');
+    Route::get('/voltarCarrinho', [carrinhoController::class, 'index'])->name('voltarCarrinho');
 
 
     Route::get('/mercadopago/failure', function () {

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
 use MercadoPago\MercadoPagoConfig;
 use MercadoPago\Client\Preference\PreferenceClient;
 use MercadoPago\Exceptions\MPApiException;
 use Illuminate\Http\Request;
+
+
 use Illuminate\Support\Facades\Auth;
 
 class PagamentoController extends Controller
@@ -26,11 +29,14 @@ class PagamentoController extends Controller
     // Função para criar uma nova preferência de pagamento
     public function createPaymentPreference(Request $request)
     {
-        // Chama a função para autenticar o SDK do Mercado Pago
-        $this->authenticate();
-
-        // Obtém o total do pedido a partir do request
         $total = $request->input('total');
+        $produto_ids = $request->input('id');
+
+        // Salva dados na sessão
+        session(['produto_ids' => $produto_ids, 'total' => $total]);
+
+        // Autentica o Mercado Pago
+        $this->authenticate();
 
         // Define o item (produto)
         $product1 = [
@@ -39,33 +45,24 @@ class PagamentoController extends Controller
             "description" => "Comida Comprada em Trailher da Karen",
             "currency_id" => "BRL",
             "quantity" => 1,
-            "unit_price" => (float) $total  // Usa o valor total do carrinho
+            "unit_price" => (float) $total,
         ];
 
-        // Definir os itens da compra
         $items = [$product1];
 
-        // Definir o pagador (cliente)
         $payer = [
-            "name" => Auth::user()->usu_nome, // Você pode obter o nome do usuário logado
-            "surname" => " ", // Certifique-se de que isso esteja disponível
-            "email" => Auth::user()->usu_email // E-mail do usuário logado
+            "name" => Auth::user()->usu_nome,
+            "email" => Auth::user()->usu_email,
         ];
 
-        // Chama a função para montar a requisição
         $request = $this->createPreferenceRequest($items, $payer);
 
-        // Inicializa o cliente de preferências
         $client = new PreferenceClient();
 
         try {
-            // Cria a preferência e obtém o link de pagamento
             $preference = $client->create($request);
-
-            // Redireciona o usuário para o Checkout do Mercado Pago
             return redirect($preference->init_point);
         } catch (MPApiException $error) {
-            // Retorna uma mensagem de erro em caso de falha
             return response()->json(['error' => $error->getMessage()], 500);
         }
     }
@@ -74,25 +71,17 @@ class PagamentoController extends Controller
     // Função para criar o array de requisição para a preferência
     private function createPreferenceRequest($items, $payer): array
     {
-        $paymentMethods = [
-            "excluded_payment_methods" => [],
-            "installments" => 12,
-            "default_installments" => 1
-        ];
-
-        $backUrls = [
-            'success' => route('carrinho'),
-            'failure' => route('carrinho'),
-        ];
-
         return [
             "items" => $items,
             "payer" => $payer,
-            "payment_methods" => $paymentMethods,
-            "back_urls" => $backUrls,
+            "payment_methods" => [
+                "installments" => 12,
+            ],
+            "back_urls" => [
+                'success' => route('mercadopago.success'),
+                'failure' => route('carrinho'),
+            ],
             "statement_descriptor" => "MINHA LOJA",
-            "external_reference" => "1234567890",
-            "expires" => false,
             "auto_return" => 'approved',
         ];
     }
@@ -118,13 +107,27 @@ class PagamentoController extends Controller
 
     public function paymentSuccess(Request $request)
     {
-        // Aqui você pode adicionar lógica para verificar se o pagamento foi realmente bem-sucedido
-        // e se os dados do pagamento estão corretos.
+        $total = session('total');
+        $produto_ids = session('produto_ids');
 
-        // Limpa o carrinho da sessão
+        // Obter a quantidade de compras do usuário atual
+        $quantidadeAtual = Pedido::where('usuario_id', Auth::id())->count();
+
+        // Criar um novo pedido e definir os campos
+        $pedido = new Pedido();
+        $pedido->usuario_id = Auth::id();
+        $pedido->ped_data_pago = now();
+        $pedido->ped_valor = $total;
+        $pedido->ped_status = 1;
+        $pedido->ped_quantidade = $quantidadeAtual + 1; // Incrementa a quantidade
+
+        $pedido->save();
+
+        // Sincronizar os produtos no pedido
+        $pedido->produto()->attach($produto_ids);
+
         session()->forget('carrinho');
 
-        // Você pode redirecionar o usuário para uma página de confirmação
-        return view('mercadopago.success'); // ou redirecionar para onde desejar
+        return redirect()->route('voltarCarrinho');
     }
 }

@@ -14,29 +14,29 @@ class TipoProdutoSeeder extends Seeder
     public function run()
     {
         // Adicione alguns tipos de produtos
-        TipoProduto::create(['nome' => 'Bebida']);
-        TipoProduto::create(['nome' => 'Porção']);
-        TipoProduto::create(['nome' => 'Pizzas Pequenas']);
-        TipoProduto::create(['nome' => 'Pizzas']);
-        TipoProduto::create(['nome' => 'Lanches']);
-        TipoProduto::create(['nome' => 'Lanche Artesanal']);
-        TipoProduto::create(['nome' => 'Beirute']);
-        TipoProduto::create(['nome' => 'Mini Lanches']);
-        TipoProduto::create(['nome' => 'Combo Mini Lanches']);
-        TipoProduto::create(['nome' => 'Combo Porções']);
-        TipoProduto::create(['nome' => 'Caldo']);
-        TipoProduto::create(['nome' => 'Porção Individual Pote']);
-        TipoProduto::create(['nome' => 'Strogofritas']);
-        TipoProduto::create(['nome' => 'Pastel']);
-        TipoProduto::create(['nome' => 'Pastel Quaresma']);
-        TipoProduto::create(['nome' => 'Pastel Doce']);
-        TipoProduto::create(['nome' => 'Mini Pastelzinho']);
-        TipoProduto::create(['nome' => 'Mini Pastelzinho Doce']);
-        TipoProduto::create(['nome' => 'Tapioca Salgada']);
-        TipoProduto::create(['nome' => 'Tapioca Doce']);
-        TipoProduto::create(['nome' => 'Esfirra']);
-        TipoProduto::create(['nome' => 'Esfirra Doce']);
-        TipoProduto::create(['nome' => 'Açai Frooty']);
+        TipoProduto::create(['tip_nome' => 'Bebida']);
+        TipoProduto::create(['tip_nome' => 'Porção']);
+        TipoProduto::create(['tip_nome' => 'Pizzas Pequenas']);
+        TipoProduto::create(['tip_nome' => 'Pizzas']);
+        TipoProduto::create(['tip_nome' => 'Lanches']);
+        TipoProduto::create(['tip_nome' => 'Lanche Artesanal']);
+        TipoProduto::create(['tip_nome' => 'Beirute']);
+        TipoProduto::create(['tip_nome' => 'Mini Lanches']);
+        TipoProduto::create(['tip_nome' => 'Combo Mini Lanches']);
+        TipoProduto::create(['tip_nome' => 'Combo Porções']);
+        TipoProduto::create(['tip_nome' => 'Caldo']);
+        TipoProduto::create(['tip_nome' => 'Porção Individual Pote']);
+        TipoProduto::create(['tip_nome' => 'Strogofritas']);
+        TipoProduto::create(['tip_nome' => 'Pastel']);
+        TipoProduto::create(['tip_nome' => 'Pastel Quaresma']);
+        TipoProduto::create(['tip_nome' => 'Pastel Doce']);
+        TipoProduto::create(['tip_nome' => 'Mini Pastelzinho']);
+        TipoProduto::create(['tip_nome' => 'Mini Pastelzinho Doce']);
+        TipoProduto::create(['tip_nome' => 'Tapioca Salgada']);
+        TipoProduto::create(['tip_nome' => 'Tapioca Doce']);
+        TipoProduto::create(['tip_nome' => 'Esfirra']);
+        TipoProduto::create(['tip_nome' => 'Esfirra Doce']);
+        TipoProduto::create(['tip_nome' => 'Açai Frooty']);
         
     }
 }

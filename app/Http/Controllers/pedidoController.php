@@ -65,7 +65,7 @@ class pedidoController extends Controller
         $ped_data = $request->input('ped_data');
         $id = $request->input("id");
 
-        $pedido = PEdido::where('id', $id)->first();
+        $pedido = Pedido::where('id', $id)->first();
         $pedido->usuario_id = $usuario_id;
         $pedido->ped_valor = $ped_valor;
         $pedido->ped_status = $ped_status;

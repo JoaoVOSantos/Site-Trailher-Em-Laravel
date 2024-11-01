@@ -64,8 +64,8 @@ class IngredienteSeeder extends Seeder
         ];
 
         foreach ($ingredientes as $ingrediente) {
-            DB::table('ingredientes')->insert([
-                'nome' => $ingrediente,
+            DB::table('ingrediente')->insert([
+                'ing_nome' => $ingrediente,
             ]);
         }
     }

@@ -18,8 +18,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('produto_id');
             $table->foreign('produto_id')->references('id')->on('produto')->onDelete('cascade');
-            
-            $table->primary(['pedido_id', 'produto_id']);
+
+            $table->timestamps();
         });
     }
 

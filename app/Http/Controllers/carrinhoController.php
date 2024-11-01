@@ -8,6 +8,9 @@ use App\Models\Produto;
 
 class carrinhoController extends Controller
 {
+    public function index(){
+        return view('carrinho.voltarCarrinho');
+    }
     public function adicionar(Request $request, $id)
     {
         // Encontra o produto pelo ID
