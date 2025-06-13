@@ -16,7 +16,7 @@ use App\Http\Controllers\PagamentoController;
 /*
 view -> o caminho das pastas ex: cliente.metas.index
 route -> o caminho que os forms e as urls vao fazer ex: form({{route('cliente')}})  route()->name('cliente');
-controller ->ele vem da rota e retorna uma rota ou uma view depois de fazer o algoritimo
+controller ->ele vem da rota e retorna uma rota ou uma view depois de executar a logica
 */
 
 Route::middleware(['auth', 'admin'])->group(function () {
